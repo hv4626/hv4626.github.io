@@ -19,6 +19,7 @@
             margin: 0 auto;
             background-color: white;
             border: 1px solid #3b5998;
+            overflow: hidden; /* Clearfix for floated elements */
         }
         #header {
             background-color: #3b5998;
@@ -46,19 +47,21 @@
         #sidebar {
             width: 200px;
             float: left;
-            padding: 10px;
+            padding: 0; /* Removed padding to ensure no extra space */
             background-color: #f2f2f2;
             border-right: 1px solid #3b5998;
+            box-sizing: border-box; /* Ensure padding doesn’t affect width */
         }
         #content {
             width: 580px;
             float: right;
-            padding: 10px;
+            padding: 0; /* Removed padding to ensure no extra space */
+            box-sizing: border-box; /* Ensure padding doesn’t affect width */
         }
         .section {
             background-color: #f2f2f2;
             border: 1px solid #3b5998;
-            margin-bottom: 5px; /* Reduced margin to minimize space */
+            margin: 0 0 5px 0; /* Tightened margin, no top margin to prevent gaps */
             padding: 5px;
         }
         .section h3 {
@@ -118,7 +121,7 @@
                 <h3>Picture</h3>
                 <img src="assets/IMG_1052.jpeg" alt="Harshvardhan's Profile Pic">
                 <p><a href="mailto:hv4626@gmail.com">Send Hv a Message</a></p>
-                <p><a href="https://www.facebook.com/profile.php?id=100001134377552">Poke Him!</a></p>
+                <p><a href="https://www.facebook.com/profile.php?id=100001134377552">Meow Him!</a></p>
             </div>
             <div class="section">
                 <h3>Connection</h3>
