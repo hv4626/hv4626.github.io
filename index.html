@@ -33,6 +33,10 @@
             text-align: center;
             border-bottom: 1px solid white;
             z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
         }
         #header a {
             color: white;
@@ -102,15 +106,6 @@
         a:hover {
             text-decoration: underline;
         }
-        .social-icons a {
-            color: #3b5998;
-            font-size: 1.5em;
-            margin-right: 10px;
-            transition: color 0.3s;
-        }
-        .social-icons a:hover {
-            color: #6d84b4;
-        }
         #timeline-link {
             position: absolute;
             right: 10px;
@@ -123,7 +118,7 @@
         #photo-gallery {
             width: 200px;
             float: right;
-            margin: 0 0 10px 10px;
+            margin: 0 0 10px 20px; /* Increased left margin from 10px to 20px for better separation */
             background: linear-gradient(to bottom, #f2f2f2, #e0e0e0);
             padding: 5px;
             border: 1px solid #3b5998;
@@ -243,6 +238,47 @@
         #back-to-top:hover {
             background-color: #6d84b4;
         }
+        /* Toggle Switch Styles */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 24px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #6d84b4;
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        /* Dark Mode Styles */
         body.dark-mode {
             background-color: #1a1a1a;
             color: #e0e0e0;
@@ -290,6 +326,10 @@
                 width: 100%;
                 margin-bottom: 5px;
             }
+            #header {
+                flex-direction: column;
+                gap: 5px;
+            }
         }
     </style>
 </head>
@@ -299,8 +339,11 @@
         <a href="https://www.facebook.com/profile.php?id=100001134377552"><i class="fab fa-facebook"></i></a> | 
         <a href="https://github.com/hv4626/"><i class="fab fa-github"></i></a> | 
         <a href="https://www.instagram.com/hrsh.vrdn/"><i class="fab fa-instagram"></i></a>
+        <label class="toggle-switch">
+            <input type="checkbox" id="theme-toggle">
+            <span class="slider"></span>
+        </label>
     </div>
-    <button id="theme-toggle" style="position: absolute; top: 5px; left: 10px; padding: 5px;">Toggle Dark Mode</button>
     <div id="container">
         <div id="profile-header">
             Harshvardhan's Profile <span style="float: right;">IIT Bombay</span>
