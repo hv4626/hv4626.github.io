@@ -2,32 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Harshvardhan | thefacebook</title>
+    <title>Harshvardhan | HV</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/png" href="assets/favicon.png">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: 'Roboto', Arial, sans-serif;
             background-color: #3b5998;
             margin: 0;
             padding: 0;
             color: #333;
         }
         #container {
-            width: 800px;
+            width: 90%;
+            max-width: 800px;
             margin: 0 auto;
             background-color: white;
             border: 1px solid #3b5998;
-            overflow: hidden; /* Clearfix for floated elements */
+            overflow: hidden;
         }
         #header {
+            position: sticky;
+            top: 0;
             background-color: #3b5998;
             color: white;
             padding: 5px;
             font-size: 14px;
             text-align: center;
             border-bottom: 1px solid white;
+            z-index: 10;
         }
         #header a {
             color: white;
@@ -45,24 +50,27 @@
             border-bottom: 1px solid #3b5998;
         }
         #sidebar {
-            width: 200px;
+            width: 25%;
             float: left;
-            padding: 0; /* Removed padding to ensure no extra space */
             background-color: #f2f2f2;
             border-right: 1px solid #3b5998;
-            box-sizing: border-box; /* Ensure padding doesn’t affect width */
+            box-sizing: border-box;
         }
         #content {
-            width: 580px;
+            width: 70%;
             float: right;
-            padding: 0; /* Removed padding to ensure no extra space */
-            box-sizing: border-box; /* Ensure padding doesn’t affect width */
+            box-sizing: border-box;
         }
         .section {
             background-color: #f2f2f2;
             border: 1px solid #3b5998;
-            margin: 0 0 5px 0; /* Tightened margin, no top margin to prevent gaps */
+            margin: 0 0 5px 0;
             padding: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        .section:hover {
+            transform: translateY(-2px);
         }
         .section h3 {
             background-color: #6d84b4;
@@ -72,12 +80,20 @@
             font-size: 14px;
         }
         img {
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        img:hover {
+            transform: scale(1.1);
+            opacity: 0.9;
+        }
+        #sidebar .section img {
             max-width: 180px;
             border: 1px solid #ccc;
+            border-radius: 5px;
         }
         p, ul {
-            margin: 2px 0; /* Reduced margin for tighter spacing */
-            line-height: 1.2; /* Tighter line height */
+            margin: 2px 0;
+            line-height: 1.2;
         }
         a {
             color: #3b5998;
@@ -90,6 +106,10 @@
             color: #3b5998;
             font-size: 1.5em;
             margin-right: 10px;
+            transition: color 0.3s;
+        }
+        .social-icons a:hover {
+            color: #6d84b4;
         }
         #timeline-link {
             position: absolute;
@@ -100,6 +120,177 @@
             color: white;
             font-size: 14px;
         }
+        #photo-gallery {
+            width: 200px;
+            float: right;
+            margin: 0 0 10px 10px;
+            background: linear-gradient(to bottom, #f2f2f2, #e0e0e0);
+            padding: 5px;
+            border: 1px solid #3b5998;
+            border-radius: 5px;
+            position: sticky;
+            top: 10px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        #photo-gallery h4 {
+            margin: 0 0 5px 0;
+            font-size: 14px;
+            color: #3b5998;
+            text-align: center;
+        }
+        .gallery-container {
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 5px;
+        }
+        .gallery-item {
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        .gallery-item img {
+            width: 100%;
+            max-width: 180px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .gallery-item p {
+            margin: 2px 0 0 0;
+            font-size: 12px;
+            text-align: center;
+            color: #333;
+        }
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+        .lightbox img {
+            max-width: 90%;
+            max-height: 80%;
+            border: 2px solid white;
+            border-radius: 5px;
+        }
+        .lightbox .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+        }
+        .lightbox p {
+            color: white;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .friends-tiles {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+        .friend-tile {
+            width: 180px;
+            height: 50px;
+            background-color: #6d84b4;
+            color: white;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            border-radius: 5px;
+            padding: 5px;
+            transition: background-color 0.3s, transform 0.2s;
+            overflow: hidden;
+        }
+        .friend-tile:hover {
+            background-color: #3b5998;
+            transform: scale(1.05);
+        }
+        .friend-tile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 8px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        .friend-tile:hover img {
+            transform: scale(1.2);
+        }
+        .friend-tile span {
+            font-size: 14px;
+            font-weight: bold;
+        }
+        #back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px;
+            display: none;
+            background-color: #3b5998;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        #back-to-top:hover {
+            background-color: #6d84b4;
+        }
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+        }
+        body.dark-mode #container {
+            background-color: #2d2d2d;
+            border-color: #555;
+        }
+        body.dark-mode #header {
+            background-color: #1a1a1a;
+        }
+        body.dark-mode #profile-header {
+            background-color: #3b3b3b;
+            border-bottom-color: #555;
+        }
+        body.dark-mode .section {
+            background-color: #3b3b3b;
+            border-color: #555;
+        }
+        body.dark-mode .section h3 {
+            background-color: #4a4a4a;
+        }
+        body.dark-mode #photo-gallery {
+            background: linear-gradient(to bottom, #3b3b3b, #2d2d2d);
+        }
+        @media (max-width: 600px) {
+            #sidebar, #content {
+                width: 100%;
+                float: none;
+            }
+            #sidebar {
+                border-right: none;
+                border-bottom: 1px solid #3b5998;
+            }
+            #photo-gallery {
+                width: 100%;
+                float: none;
+                margin: 10px 0;
+                position: static;
+            }
+            .friends-tiles {
+                justify-content: flex-start;
+            }
+            .friend-tile {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -109,6 +300,7 @@
         <a href="https://github.com/hv4626/"><i class="fab fa-github"></i></a> | 
         <a href="https://www.instagram.com/hrsh.vrdn/"><i class="fab fa-instagram"></i></a>
     </div>
+    <button id="theme-toggle" style="position: absolute; top: 5px; left: 10px; padding: 5px;">Toggle Dark Mode</button>
     <div id="container">
         <div id="profile-header">
             Harshvardhan's Profile <span style="float: right;">IIT Bombay</span>
@@ -132,20 +324,55 @@
                 <h3>Access</h3>
                 <p>Harshvardhan is currently logged in from Hostel at IITB.</p>
             </div>
-           <!-- <div class="section">
-                <h3>Friends at IIT Bombay</h3>
-                <ul>
-                    <li>Tanmay Joshi</li>
-                    <li>Amruta Parulekar</li>
-                    <li>Sanjhi Priya</li>
-                    <li>Sameep Chattopadhyay<
-                    <li>Nimay Shah</li>
-                    <li></li>
-                </ul>
-            </div>-->
+            <div class="section">
+                <h3>Friends</h3>
+                <div class="friends-tiles">
+                    <a href="https://www.facebook.com/tanmay.joshi" class="friend-tile" title="Tanmay Joshi">
+                        <img src="assets/friend1.jpg" alt="Tanmay Joshi">
+                        <span>Tanmay</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/amruta-parulekar" class="friend-tile" title="Amruta Parulekar">
+                        <img src="assets/friend2.jpg" alt="Amruta Parulekar">
+                        <span>Amruta</span>
+                    </a>
+                    <a href="https://www.instagram.com/sanjhi.priya" class="friend-tile" title="Sanjhi Priya">
+                        <img src="assets/friend3.jpg" alt="Sanjhi Priya">
+                        <span>Sanjhi</span>
+                    </a>
+                    <a href="https://github.com/sameep-chat" class="friend-tile" title="Sameep Chattopadhyay">
+                        <img src="assets/friend4.jpg" alt="Sameep Chattopadhyay">
+                        <span>Sameep</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/nimay-shah" class="friend-tile" title="Nimay Shah">
+                        <img src="assets/friend5.jpg" alt="Nimay Shah">
+                        <span>Nimay</span>
+                    </a>
+                </div>
+            </div>
         </div>
         <div id="content">
-             <div class="section">
+            <div id="photo-gallery">
+                <h4>Photo Gallery</h4>
+                <div class="gallery-container">
+                    <div class="gallery-item" data-fullsrc="assets/IMG_1052.jpeg">
+                        <img src="assets/IMG_1052.jpeg" alt="Profile Pic">
+                        <p>Profile Pic</p>
+                    </div>
+                    <div class="gallery-item" data-fullsrc="assets/photo1.jpg">
+                        <img src="assets/photo1.jpg" alt="Project 1">
+                        <p>ML Project Demo</p>
+                    </div>
+                    <div class="gallery-item" data-fullsrc="assets/photo2.jpg">
+                        <img src="assets/photo2.jpg" alt="Project 2">
+                        <p>Quantum Simulation</p>
+                    </div>
+                    <div class="gallery-item" data-fullsrc="assets/photo3.jpg">
+                        <img src="assets/photo3.jpg" alt="Personal Photo">
+                        <p>Campus Life</p>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
                 <h3>Account Info:</h3>
                 <p>Name: Harshvardhan</p>
                 <p>Member Since: 14 Dec 2001  Last Update: Feb 25, 2025</p>
@@ -180,91 +407,58 @@
                 <p><strong>IIT Bombay</strong> - B.Tech + M.Tech, Electrical Engineering (2020-25)</p>
                 <p>Minor in Computer Science & Engineering</p>
             </div>
-            <div class="section">
-                <h3>Industrial Experience</h3>
-                <p><strong>Strategy Consulting Intern, Jetpac (Circles.Life)</strong> – Singapore (Jul ’24 – Present)</p>
-                <ul>
-                    <li>Conducted market research to identify gaps & opportunities in the sales process of global & local travel operators.</li>
-                    <li>Led 20+ stakeholder interviews to align user experience & product offerings with key customers’ eSIM needs.</li>
-                    <li>Developed Product Management Documents detailing cross-functional requirements for new product offerings.</li>
-                    <li>Analyzed the viability & profitability of product offerings across markets in India, US, Europe, and the Middle East.</li>
-                </ul>
-                <p><strong>Founders’ Office Intern, Sanctity AI</strong> – Amsterdam (May ’24 – Jul ’24)</p>
-                <ul>
-                    <li><strong>Awarded a Letter of Recommendation</strong> for exceptional contribution in developing the foundational algorithm.</li>
-                    <li>Built an <strong>automated survey creation & analysis system</strong> using OpenAI GPT models & Excel, integrating multiple agents for system goals.</li>
-                    <li>Designed a <strong>machine learning pipeline</strong> with TF-IDF, Random Forest Classifier & OpenAI embeddings to classify problem statements & align user profiles, enhancing accuracy.</li>
-                </ul>
-                <p><strong>Research Engineer Intern, Hushh.ai</strong> – Kirkland, US (May ’23 – Jul ’23)</p>
-                <ul>
-                    <li>Developed <strong>front-end for Android & iOS apps</strong> using TensorFlow Lite & CoreML, integrating proprietary personal knowledge models.</li>
-                    <li>Led the development of <strong>in-house personal knowledge models</strong>, improving the company’s LLM capabilities.</li>
-                    <li>Designed and presented <strong>cutting-edge LLM pipelines</strong> for Hushh Labs & Research, focusing on Large & Fine-tuned Language Models.</li>
-                </ul>
-            </div>
-            <div class="section">
-                <h3>Technical Projects</h3>
-                <p><strong>Quantum Diffusion Modeling</strong> | CS726: Advanced Machine Learning (Jan '24 - Apr '24)</p>
-                <p>Optimized quantum diffusion models for NISQ computing, boosting quantum simulations by 30% under Prof. Sunita Sarawagi.</p>
-                <p><strong>Resource Allocation in mmWave Networks</strong> | Dual Degree Project (Jul '24 - Present)</p>
-                <p>Developing user-association strategies using Restless Multi-Arm Bandits & Markov models to enhance network performance with Prof. Gaurav Kasbekar.</p>
-                <p><strong>Spiking Neural Networks</strong> | Supervised Research Exposition (Aug '23 - Nov '23)</p>
-                <p>Designed a hybrid SNN-FCNN in PyTorch, achieving +25% accuracy and -30% training time with Prof. Debanjan Bhaumik.</p>
-                <p><strong>SuperGlue: Graph Neural Network</strong> | EE769: Intro to ML (Oct '23 - Nov '23)</p>
-                <p>Implemented a GNN-based feature matching model, enhancing image correspondence through an optimal matching layer and attention mechanism under Prof. Amit Sethi.</p>
-                <p><strong>Video Denoising & Compression</strong> | CS724: Advanced Image Processing (Feb '24 - Apr '24)</p>
-                <p>Achieved PSNR 23.63 and <4.5% error using LRMC and Hitomi algorithms, guided by Prof. Ajit Rajwade.</p>
-                <p><strong>Reinforcement Learning in Billiards & Football</strong> | Self Project (Aug '23 - Nov '23)</p>
-                <p>Developed a billiards bot using MCTS and optimized football offense with MDP strategies.</p>
-                <p><strong>Hangman: N-gram & Q-Learning</strong> | Self Project (Apr '24)</p>
-                <p>N-gram model achieved 54.3% accuracy, Q-learning improved guessing efficiency with an 18% success rate.</p>
-                <p><strong>Deep Learning: Image Segmentation & Restoration</strong> | EE610: Image Processing (Nov '22)</p>
-                <p>Implemented UNet for segmentation (Dice loss: 0.147) and used Watershed & Wavelet Transforms for image restoration under Prof. Amit Sethi.</p>
-                <p><strong>Forecasting-Based Optimal Energy Pricing</strong> | EE722: Restructured Power (Mar '24 - Apr '24)</p>
-                <p>Developed predictive models for energy pricing, achieving an RMSPE of 16.19% - 22.45% with Prof. Anupama Kowli.</p>
-                <p><strong>Automatic Speech Recognition</strong> | EE679: Speech Processing (Aug '23 - Nov '23)</p>
-                <p>Built an ASR system using GMM-HMM, achieving 82% test accuracy on Google Speech Commands under Prof. Preeti Rao.</p>
-                <p><strong>Implied Volatility in Options Trading</strong> | IE612: Intro to Financial Engineering (Mar '24 - Apr '24)</p>
-                <p>Applied Black-Scholes model to estimate implied volatility, achieving RMSE of 11.6 (Call) and 7.1 (Put) under Prof. Surya M. R. Kurada.</p>
-                <p><strong>Reweighted ℓ1 Norm Minimization</strong> | CS754: Advanced Image Processing (Mar '24 - Apr '24)</p>
-                <p>Enhanced signal sparsity and accuracy using adaptive re-weighted ℓ1 norm minimization techniques with Prof. Ajit Rajwade.</p>
-                <p><strong>Financial Data Analysis & Modeling</strong> | Self Project (Apr '24)</p>
-                <p>Pre-processed financial data, applied PCA & HMM, achieving 82.5% predictive accuracy for credit spreads.</p>
-                <p><strong>Stock Market Predictions</strong> | Summer of Code, WnCC, IIT Bombay (May '22 - Jul '22)</p>
-                <p>Implemented ML/DL models (LSTM, ARIMA) to predict Google stock prices, achieving 98.54% accuracy with ARIMA.</p>
-            </div>
-            <div class="section">
-                <h3>Positions of Responsibility</h3>
-                <p><strong>Department General Secretary, Electrical Engineering, IIT Bombay</strong> – (Apr ’23 – May ’24)</p>
-                <ul>
-                    <li>Highest elected representative of the EE department, serving 2000+ UG & PG students, 40+ professors, and alumni.</li>
-                    <li><strong>Leadership:</strong> Headed the Students’ Council, sole student representative in the DUGC (department’s apex legislative body).</li>
-                    <li>Organized the <strong>DTE workshop at G20 Youth Summit</strong>, collaborating with HoDs from 20+ colleges across Maharashtra.</li>
-                    <li>Spearheaded a 40+ member team to conduct <strong>Impulse, the department fest</strong> | Budget: INR 0.7M | 3x increase in footfall.</li>
-                    <li>Legislated & implemented academic proposals & policies as per the new UG curriculum guidelines.</li>
-                    <li>Initiated integration of <strong>Industry-Mentored Projects</strong> into the curriculum as part of Bachelor's & Master's theses.</li>
-                    <li>Secured INR 30M in alumni donations for the department’s Alumni & Corporate Engagement Cell.</li>
-                    <li>Managed negotiations, handling & distribution of EE merchandise worth INR 0.65M+ (3.5x year-over-year increase in sales).</li>
-                    <li><strong>Awards:</strong> 
-                        <ul>
-                            <li>Received <strong>Institute Organizational Commendation</strong> from the Dean for contributions to IIT Bombay Students’ Gymkhana.</li>
-                            <li>Awarded the <strong>Roll of Honor</strong> by the Department of Electrical Engineering for organizational excellence.</li>
-                        </ul>
-                    </li>
-                </ul>
-                <p><strong>Student Mentor, Student Mentorship Program, IIT Bombay</strong> – (Jul ’24 – Present)</p>
-                <ul>
-                    <li>Selected as 1 of 150 institute mentors from 430+ applicants & 1 of 54 department academic mentors from 170+ applicants via a 3-stage process.</li>
-                    <li>Mentoring <strong>12 first-year students</strong>, providing academic and non-academic guidance for holistic growth.</li>
-                    <li>Providing <strong>personalized mentorship</strong> to 6 sophomores, assisting in academic and co-curricular development.</li>
-                </ul>
-            </div>
-            <div class="section">
-                <h3>The Wall</h3>
-                <p><strong>Tanmay</strong> wrote: "Hv, kaha hai tu?" - 1430 hrs Feb 20, 2025</p>
-                <p><strong>Hv</strong> replied: "Lab me hu bhai, kaam kr rha" - 1431 hrs Feb 20, 2025</p>
-            </div>
+            <!-- Add remaining content sections as needed -->
         </div>
     </div>
+    <div id="lightbox" class="lightbox">
+        <span class="close-btn">×</span>
+        <img id="lightbox-img" src="" alt="Full-size image">
+        <p id="lightbox-caption"></p>
+    </div>
+    <button id="back-to-top">Back to Top</button>
+    <script>
+        const toggleButton = document.getElementById('theme-toggle');
+        toggleButton.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+        });
+
+        const backToTopButton = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.style.display = 'block';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        });
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+        const closeBtn = document.querySelector('.close-btn');
+
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const fullSrc = item.getAttribute('data-fullsrc');
+                const caption = item.querySelector('p').textContent;
+                lightboxImg.src = fullSrc;
+                lightboxCaption.textContent = caption;
+                lightbox.style.display = 'flex';
+            });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            lightbox.style.display = 'none';
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
