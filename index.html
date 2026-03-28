@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harshvardhan | HV</title>
+    <meta name="description" content="Harshvardhan R — Product Application Engineer at KLA Corporation. IIT Bombay '25, Electrical Engineering & CS.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tahoma:wght@400;700&family=Lucida+Grande:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* ====== RESET & BASE ====== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --fb-blue: #3b5998;
+            --fb-dark-blue: #29487d;
+            --fb-header-blue: #4267B2;
+            --fb-light-blue: #d8dfea;
+            --fb-lighter-blue: #e9eef5;
+            --fb-border: #b3b3b3;
+            --fb-bg: #e9ebee;
+            --fb-white: #ffffff;
+            --fb-text: #1c1e21;
+            --fb-text-secondary: #606770;
+            --fb-link: #385898;
+            --fb-green: #42b72a;
+            --fb-red: #fa3e3e;
+            --section-bg: #f5f6f7;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.1);
+            --shadow-md: 0 2px 8px rgba(0,0,0,0.12);
+            --radius: 8px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, Helvetica, Arial, sans-serif;
+            font-size: 13px;
+            color: var(--fb-text);
+            background: var(--fb-bg);
+            line-height: 1.38;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: var(--fb-link); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* ====== HEADER / NAV BAR ====== */
+        .fb-header {
+            background: var(--fb-header-blue);
+            background: linear-gradient(180deg, #4a6faf 0%, #3b5998 100%);
+            height: 42px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+        }
+
+        .fb-logo {
+            font-size: 22px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: -0.5px;
+            font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+        }
+
+        .fb-logo span { font-weight: 400; font-size: 11px; opacity: 0.8; margin-left: 6px; }
+
+        .fb-nav {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .fb-nav a {
+            color: rgba(255,255,255,0.85);
+            font-size: 12px;
+            font-weight: 600;
+            padding: 6px 10px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        .fb-nav a:hover {
+            background: rgba(255,255,255,0.15);
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .online-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--fb-green);
+            margin-right: 5px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* ====== COVER PHOTO SECTION ====== */
+        .cover-section {
+            background: linear-gradient(135deg, #1a3a6c 0%, #2d5aa0 40%, #4a7fd4 100%);
+            height: 280px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cover-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(66,103,178,0.4) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(100,150,230,0.3) 0%, transparent 50%);
+        }
+
+        .cover-pattern {
+            position: absolute;
+            inset: 0;
+            opacity: 0.06;
+            background-image: 
+                linear-gradient(45deg, #fff 25%, transparent 25%),
+                linear-gradient(-45deg, #fff 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #fff 75%),
+                linear-gradient(-45deg, transparent 75%, #fff 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0;
+        }
+
+        .cover-text {
+            position: absolute;
+            bottom: 80px;
+            left: 240px;
+            color: #fff;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+        }
+
+        .cover-text h1 {
+            font-size: 30px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .cover-text p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* ====== PROFILE PIC OVERLAY ====== */
+        .profile-pic-wrapper {
+            position: absolute;
+            bottom: -40px;
+            left: 32px;
+            width: 176px;
+            height: 176px;
+            border-radius: 8px;
+            border: 4px solid #fff;
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+            background: #fff;
+            z-index: 10;
+        }
+
+        .profile-pic-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ====== PROFILE NAV BAR ====== */
+        .profile-nav {
+            background: #fff;
+            border-bottom: 1px solid #dddfe2;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+        }
+
+        .profile-nav-inner {
+            max-width: 940px;
+            margin: 0 auto;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            padding: 0 16px;
+            height: 56px;
+            gap: 4px;
+        }
+
+        .profile-tab {
+            padding: 16px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--fb-text-secondary);
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .profile-tab:hover {
+            background: #f0f2f5;
+            border-radius: 8px 8px 0 0;
+            text-decoration: none;
+        }
+
+        .profile-tab.active {
+            color: var(--fb-header-blue);
+            border-bottom-color: var(--fb-header-blue);
+        }
+
+        /* ====== MAIN LAYOUT ====== */
+        .main-container {
+            max-width: 940px;
+            margin: 16px auto;
+            display: grid;
+            grid-template-columns: 360px 1fr;
+            gap: 16px;
+            padding: 0 16px;
+        }
+
+        /* ====== CARD / BOX ====== */
+        .fb-card {
+            background: #fff;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 16px;
+            overflow: hidden;
+            animation: fadeInUp 0.5s ease both;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fb-card:nth-child(1) { animation-delay: 0.05s; }
+        .fb-card:nth-child(2) { animation-delay: 0.1s; }
+        .fb-card:nth-child(3) { animation-delay: 0.15s; }
+        .fb-card:nth-child(4) { animation-delay: 0.2s; }
+        .fb-card:nth-child(5) { animation-delay: 0.25s; }
+
+        .card-header {
+            padding: 12px 16px;
+            font-size: 17px;
+            font-weight: 700;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-header .icon {
+            font-size: 18px;
+        }
+
+        .card-body {
+            padding: 16px;
+        }
+
+        /* ====== INTRO / ABOUT ====== */
+        .intro-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .intro-item:last-child { margin-bottom: 0; }
+
+        .intro-icon {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            margin-top: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .intro-item strong {
+            color: var(--fb-text);
+        }
+
+        /* ====== CONTACT BUTTONS ====== */
+        .contact-buttons {
+            display: flex;
+            gap: 8px;
+            padding: 12px 16px;
+            border-top: 1px solid #f0f0f0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .btn:hover { text-decoration: none; }
+
+        .btn-primary {
+            background: var(--fb-header-blue);
+            color: #fff;
+        }
+        .btn-primary:hover {
+            background: var(--fb-dark-blue);
+            color: #fff;
+        }
+
+        .btn-secondary {
+            background: #e4e6eb;
+            color: var(--fb-text);
+        }
+        .btn-secondary:hover {
+            background: #d8dadf;
+        }
+
+        /* ====== FRIENDS GRID ====== */
+        .friends-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .friend-card {
+            text-align: center;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.2s;
+        }
+
+        .friend-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .friend-card img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .friend-card span {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 0;
+            color: var(--fb-text);
+        }
+
+        .friend-card a {
+            color: var(--fb-text);
+        }
+        .friend-card a:hover {
+            text-decoration: none;
+            color: var(--fb-link);
+        }
+
+        /* ====== EXPERIENCE / TIMELINE ITEMS ====== */
+        .timeline-item {
+            position: relative;
+            padding: 16px;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background 0.2s;
+        }
+
+        .timeline-item:last-child { border-bottom: none; }
+
+        .timeline-item:hover { background: #f8f9fa; }
+
+        .timeline-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .timeline-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--fb-light-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .timeline-meta {
+            flex: 1;
+        }
+
+        .timeline-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--fb-text);
+            margin-bottom: 2px;
+        }
+
+        .timeline-subtitle {
+            font-size: 13px;
+            color: var(--fb-text-secondary);
+        }
+
+        .timeline-date {
+            font-size: 12px;
+            color: var(--fb-text-secondary);
+            margin-top: 2px;
+        }
+
+        .timeline-body {
+            margin-left: 52px;
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--fb-text);
+        }
+
+        .timeline-body ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .timeline-body li {
+            position: relative;
+            padding-left: 16px;
+            margin-bottom: 6px;
+        }
+
+        .timeline-body li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: var(--fb-header-blue);
+            font-weight: 700;
+        }
+
+        /* ====== TAGS / SKILLS ====== */
+        .tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin: 3px 4px 3px 0;
+            transition: transform 0.15s;
+        }
+
+        .tag:hover { transform: scale(1.05); }
+
+        .tag-blue { background: #e7f3ff; color: var(--fb-link); }
+        .tag-green { background: #e6f6e6; color: #1a7f1a; }
+        .tag-purple { background: #f0e6ff; color: #6b21a8; }
+        .tag-orange { background: #fff3e0; color: #e65100; }
+        .tag-red { background: #ffe6e6; color: #c62828; }
+
+        /* ====== PROJECT CARDS ====== */
+        .project-grid {
+            display: grid;
+            gap: 12px;
+        }
+
+        .project-card {
+            padding: 14px;
+            border: 1px solid #e4e6eb;
+            border-radius: 8px;
+            transition: all 0.2s;
+            cursor: default;
+        }
+
+        .project-card:hover {
+            border-color: var(--fb-header-blue);
+            box-shadow: 0 2px 8px rgba(59,89,152,0.1);
+        }
+
+        .project-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--fb-link);
+            margin-bottom: 2px;
+        }
+
+        .project-context {
+            font-size: 12px;
+            color: var(--fb-text-secondary);
+            margin-bottom: 6px;
+        }
+
+        .project-desc {
+            font-size: 13px;
+            color: var(--fb-text);
+            line-height: 1.45;
+        }
+
+        /* ====== WALL POSTS ====== */
+        .wall-post {
+            padding: 16px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .wall-post:last-child { border-bottom: none; }
+
+        .wall-author {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .wall-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--fb-light-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--fb-blue);
+        }
+
+        .wall-name { font-weight: 700; font-size: 14px; }
+        .wall-time { font-size: 12px; color: var(--fb-text-secondary); }
+        .wall-text { font-size: 14px; line-height: 1.5; margin-left: 46px; }
+
+        .wall-actions {
+            margin-left: 46px;
+            margin-top: 8px;
+            display: flex;
+            gap: 16px;
+        }
+
+        .wall-action {
+            font-size: 13px;
+            color: var(--fb-text-secondary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .wall-action:hover { color: var(--fb-link); }
+
+        /* ====== PHOTO GALLERY ====== */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4px;
+        }
+
+        .photo-grid img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .photo-grid img:hover { opacity: 0.85; }
+
+        /* ====== MUSIC / FAVORITES ====== */
+        .fav-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        /* ====== POR SECTION ====== */
+        .por-highlight {
+            background: linear-gradient(135deg, #f0f4ff 0%, #e8eeff 100%);
+            border-radius: 8px;
+            padding: 14px;
+            margin-bottom: 12px;
+            border-left: 4px solid var(--fb-header-blue);
+        }
+
+        .por-highlight:last-child { margin-bottom: 0; }
+
+        .por-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--fb-text);
+            margin-bottom: 2px;
+        }
+
+        .por-org {
+            font-size: 12px;
+            color: var(--fb-text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .por-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .por-stat {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+            color: var(--fb-text);
+            background: #fff;
+            padding: 4px 10px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* ====== AWARDS ====== */
+        .award-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: linear-gradient(135deg, #fffbeb, #fef3c7);
+            border: 1px solid #fbbf24;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #92400e;
+            margin: 4px 4px 4px 0;
+        }
+
+        /* ====== EDUCATION CARD ====== */
+        .edu-card {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px;
+            border: 1px solid #e4e6eb;
+            border-radius: 8px;
+        }
+
+        .edu-logo {
+            width: 56px;
+            height: 56px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #1a3a6c, #3b5998);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: 14px;
+            flex-shrink: 0;
+            text-align: center;
+            line-height: 1.1;
+        }
+
+        .edu-details h3 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .edu-details p {
+            font-size: 13px;
+            color: var(--fb-text-secondary);
+            margin-bottom: 2px;
+        }
+
+        /* ====== LIGHTBOX ====== */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .lightbox.active { display: flex; }
+
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            font-size: 28px;
+            color: #fff;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            transition: background 0.2s;
+        }
+
+        .lightbox-close:hover { background: rgba(255,255,255,0.25); }
+
+        /* ====== FOOTER ====== */
+        .fb-footer {
+            text-align: center;
+            padding: 24px;
+            font-size: 12px;
+            color: var(--fb-text-secondary);
+            border-top: 1px solid #dddfe2;
+            margin-top: 16px;
+        }
+
+        .fb-footer a { color: var(--fb-text-secondary); margin: 0 8px; }
+        .fb-footer a:hover { text-decoration: underline; }
+
+        /* ====== SHOW MORE TOGGLE ====== */
+        .show-more-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--fb-link);
+            background: none;
+            border: none;
+            border-top: 1px solid #f0f0f0;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .show-more-btn:hover { background: #f0f2f5; }
+
+        .hidden-content { display: none; }
+        .hidden-content.visible { display: block; }
+
+        /* ====== RESPONSIVE ====== */
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                padding: 0 8px;
+            }
+
+            .cover-section { height: 180px; }
+
+            .profile-pic-wrapper {
+                width: 120px;
+                height: 120px;
+                left: 16px;
+                bottom: -30px;
+            }
+
+            .cover-text {
+                left: 148px;
+                bottom: 50px;
+            }
+
+            .cover-text h1 { font-size: 22px; }
+            .cover-text p { font-size: 12px; }
+
+            .profile-nav-inner {
+                justify-content: center;
+                flex-wrap: wrap;
+                height: auto;
+                padding: 8px;
+            }
+
+            .profile-tab { padding: 10px 12px; font-size: 13px; }
+
+            .friends-grid { grid-template-columns: repeat(3, 1fr); }
+
+            .fb-nav { display: none; }
+        }
+
+        @media (max-width: 480px) {
+            .cover-text { left: 16px; bottom: 100px; }
+            .profile-pic-wrapper { bottom: -20px; width: 100px; height: 100px; }
+            .contact-buttons { flex-direction: column; }
+            .btn { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====== HEADER ====== -->
+    <header class="fb-header">
+        <div class="fb-logo">
+            harshvardhan
+            <span>| portfolio</span>
+        </div>
+        <nav class="fb-nav">
+            <a href="#about"><span class="online-dot"></span> Online</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+            <a href="#wall">Wall</a>
+        </nav>
+    </header>
+
+    <!-- ====== COVER PHOTO ====== -->
+    <section class="cover-section">
+        <div class="cover-pattern"></div>
+        <div class="profile-pic-wrapper">
+            <img src="https://hv4626.github.io/assets/IMG_1052.jpeg" alt="Harshvardhan" loading="lazy">
+        </div>
+        <div class="cover-text">
+            <h1>Harshvardhan R</h1>
+            <p>Product Application Engineer @ KLA Corporation &nbsp;·&nbsp; IIT Bombay '25</p>
+        </div>
+    </section>
+
+    <!-- ====== PROFILE NAV ====== -->
+    <nav class="profile-nav">
+        <div class="profile-nav-inner">
+            <a href="#about" class="profile-tab active">About</a>
+            <a href="#experience" class="profile-tab">Experience</a>
+            <a href="#projects" class="profile-tab">Projects</a>
+            <a href="#leadership" class="profile-tab">Leadership</a>
+            <a href="#friends-section" class="profile-tab">Friends</a>
+            <a href="#wall" class="profile-tab">Wall</a>
+        </div>
+    </nav>
+
+    <!-- ====== MAIN CONTENT ====== -->
+    <main class="main-container">
+
+        <!-- ====== LEFT COLUMN ====== -->
+        <aside>
+            <!-- INTRO -->
+            <div class="fb-card" id="about">
+                <div class="card-header">
+                    <span class="icon">👤</span> Intro
+                </div>
+                <div class="card-body">
+                    <div class="intro-item">
+                        <span class="intro-icon">💼</span>
+                        <span>Product Application Engineer at <strong>KLA Corporation</strong>, SWIFT Division</span>
+                    </div>
+                    <div class="intro-item">
+                        <span class="intro-icon">📍</span>
+                        <span>Based in <strong>South Korea</strong> & <strong>Singapore</strong></span>
+                    </div>
+                    <div class="intro-item">
+                        <span class="intro-icon">🎓</span>
+                        <span><strong>IIT Bombay</strong> '25 — Dual Degree (B.Tech + M.Tech) in Electrical Engineering, CS Minor</span>
+                    </div>
+                    <div class="intro-item">
+                        <span class="intro-icon">🏆</span>
+                        <span>AIR 391, JEE Advanced 2020</span>
+                    </div>
+                    <div class="intro-item">
+                        <span class="intro-icon">🔬</span>
+                        <span>Advanced-packaging inspection & metrology for semiconductor fabs</span>
+                    </div>
+                    <div class="intro-item">
+                        <span class="intro-icon">🎵</span>
+                        <span>The Weeknd · Arctic Monkeys · Arijit Singh · Karan Aujla · Mohit Chauhan</span>
+                    </div>
+                    <div class="intro-item">
+                        <span class="intro-icon">🎬</span>
+                        <span>Interstellar · Mission Impossible · Harry Potter</span>
+                    </div>
+                </div>
+                <div class="contact-buttons">
+                    <a href="mailto:hv4626@gmail.com" class="btn btn-primary">✉ Message</a>
+                    <a href="https://www.linkedin.com/in/hv4626/" target="_blank" class="btn btn-secondary">🔗 LinkedIn</a>
+                    <a href="https://github.com/hv4626/" target="_blank" class="btn btn-secondary">💻 GitHub</a>
+                    <a href="https://www.instagram.com/hrsh.vrdn/" target="_blank" class="btn btn-secondary">📸 Instagram</a>
+                </div>
+            </div>
+
+            <!-- EDUCATION -->
+            <div class="fb-card">
+                <div class="card-header">
+                    <span class="icon">🎓</span> Education
+                </div>
+                <div class="card-body">
+                    <div class="edu-card">
+                        <div class="edu-logo">IIT<br>B</div>
+                        <div class="edu-details">
+                            <h3>IIT Bombay</h3>
+                            <p>B.Tech + M.Tech, Electrical Engineering</p>
+                            <p>Minor in Computer Science & Engineering</p>
+                            <p style="font-size: 12px; color: var(--fb-text-secondary);">2020 – 2025</p>
+                        </div>
+                    </div>
+                    <div style="margin-top: 12px;">
+                        <p style="font-size: 13px; color: var(--fb-text-secondary); margin-bottom: 8px;">M.Tech Thesis: <strong style="color: var(--fb-text);">User Association in mmWave Networks via Restless Bandits</strong></p>
+                        <p style="font-size: 12px; color: var(--fb-text-secondary);">Advisor: Prof. Gaurav Kasbekar</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SKILLS -->
+            <div class="fb-card">
+                <div class="card-header">
+                    <span class="icon">🛠</span> Skills & Tools
+                </div>
+                <div class="card-body">
+                    <p style="font-size: 12px; font-weight: 600; color: var(--fb-text-secondary); margin-bottom: 6px;">ML / AI</p>
+                    <div style="margin-bottom: 12px;">
+                        <span class="tag tag-blue">PyTorch</span>
+                        <span class="tag tag-blue">TensorFlow</span>
+                        <span class="tag tag-blue">OpenAI APIs</span>
+                        <span class="tag tag-blue">Scikit-learn</span>
+                        <span class="tag tag-blue">LLM Pipelines</span>
+                    </div>
+                    <p style="font-size: 12px; font-weight: 600; color: var(--fb-text-secondary); margin-bottom: 6px;">Languages & Frameworks</p>
+                    <div style="margin-bottom: 12px;">
+                        <span class="tag tag-green">Python</span>
+                        <span class="tag tag-green">C/C++</span>
+                        <span class="tag tag-green">MATLAB</span>
+                        <span class="tag tag-green">JavaScript</span>
+                        <span class="tag tag-green">React</span>
+                    </div>
+                    <p style="font-size: 12px; font-weight: 600; color: var(--fb-text-secondary); margin-bottom: 6px;">Domain</p>
+                    <div>
+                        <span class="tag tag-purple">Semiconductor Metrology</span>
+                        <span class="tag tag-purple">Signal Processing</span>
+                        <span class="tag tag-purple">Product Management</span>
+                        <span class="tag tag-purple">Strategy Consulting</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FRIENDS -->
+            <div class="fb-card" id="friends-section">
+                <div class="card-header">
+                    <span class="icon">👥</span> Friends
+                    <span style="font-size: 12px; color: var(--fb-text-secondary); margin-left: auto;">1.6k+ mutual</span>
+                </div>
+                <div class="card-body">
+                    <div class="friends-grid">
+                        <a href="https://www.linkedin.com/in/tanmay-joshi-3154b2222/" target="_blank" class="friend-card">
+                            <img src="https://hv4626.github.io/assets/Tanmay.jpg" alt="Tanmay" loading="lazy">
+                            <span>Tanmay</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/kaustubh-chourasia-08232a217/" target="_blank" class="friend-card">
+                            <img src="https://hv4626.github.io/assets/Kaus.jpg" alt="Kaustubh" loading="lazy">
+                            <span>Kaus</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/siddhant-midha-33878820a/" target="_blank" class="friend-card">
+                            <img src="https://hv4626.github.io/assets/Midha.jpg" alt="Midha" loading="lazy">
+                            <span>Midha</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/vedika-gupta-66245a20a/" target="_blank" class="friend-card">
+                            <img src="https://hv4626.github.io/assets/Vedi.jpg" alt="Vedika" loading="lazy">
+                            <span>Vedi</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/kushagra-mishra-39b44132a/" target="_blank" class="friend-card">
+                            <img src="https://hv4626.github.io/assets/Kushagra.jpg" alt="Kushagra" loading="lazy">
+                            <span>Kushagra</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/anmol-saraf-aba22221a/" target="_blank" class="friend-card">
+                            <img src="https://hv4626.github.io/assets/Anmol.jpg" alt="Anmol" loading="lazy">
+                            <span>Anmol</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/neeraj-prabhu-144a93222/" target="_blank" class="friend-card">
+                            <img src="https://hv4626.github.io/assets/Neeraj.jpg" alt="Neeraj" loading="lazy">
+                            <span>Neeraj</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/utkarsh-gupta1209/" target="_blank" class="friend-card">
+                            <img src="https://hv4626.github.io/assets/Utg.jpg" alt="Utkarsh" loading="lazy">
+                            <span>Utg</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/aryan-gupta1/" target="_blank" class="friend-card">
+                            <img src="https://hv4626.github.io/assets/Aryan.jpg" alt="Aryan" loading="lazy">
+                            <span>Aryan</span>
+                        </a>
+                    </div>
+                    <button class="show-more-btn" onclick="toggleFriends()">See All Friends ▾</button>
+                    <div class="hidden-content" id="more-friends">
+                        <div class="friends-grid" style="padding: 0 16px 16px;">
+                            <a href="https://www.linkedin.com/in/amruta-parulekar-735976221/" target="_blank" class="friend-card">
+                                <img src="https://hv4626.github.io/assets/Amruta.jpg" alt="Amruta" loading="lazy">
+                                <span>Amruta</span>
+                            </a>
+                            <a href="https://www.linkedin.com/in/sanjhi-priya-272005200/" target="_blank" class="friend-card">
+                                <img src="https://hv4626.github.io/assets/Sanjhi.jpg" alt="Sanjhi" loading="lazy">
+                                <span>Sanjhi</span>
+                            </a>
+                            <a href="https://www.linkedin.com/in/sameep-chattopadhyay-606472214/" target="_blank" class="friend-card">
+                                <img src="https://hv4626.github.io/assets/Sameep.jpg" alt="Sameep" loading="lazy">
+                                <span>Sameep</span>
+                            </a>
+                            <a href="https://www.instagram.com/vedang.g7/" target="_blank" class="friend-card">
+                                <img src="https://hv4626.github.io/assets/vedang.jpg" alt="Vedang" loading="lazy">
+                                <span>Vedang</span>
+                            </a>
+                            <a href="https://www.linkedin.com/in/hemant-hajare-643755221/" target="_blank" class="friend-card">
+                                <img src="https://hv4626.github.io/assets/Hemant.jpg" alt="Hemant" loading="lazy">
+                                <span>Hemant</span>
+                            </a>
+                            <a href="https://www.linkedin.com/in/nimay-shah-521170251/" target="_blank" class="friend-card">
+                                <img src="https://hv4626.github.io/assets/Nimay.jpg" alt="Nimay" loading="lazy">
+                                <span>Nimay</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PHOTOS -->
+            <div class="fb-card">
+                <div class="card-header">
+                    <span class="icon">📷</span> Photos
+                </div>
+                <div class="card-body">
+                    <div class="photo-grid">
+                        <img src="https://hv4626.github.io/assets/photo.jpeg" alt="Group photo" onclick="openLightbox(this)" loading="lazy">
+                        <img src="https://hv4626.github.io/assets/photo1.jpg" alt="Group photo" onclick="openLightbox(this)" loading="lazy">
+                        <img src="https://hv4626.github.io/assets/photo2.jpg" alt="Group photo" onclick="openLightbox(this)" loading="lazy">
+                        <img src="https://hv4626.github.io/assets/photo3.jpg" alt="Group photo" onclick="openLightbox(this)" loading="lazy">
+                    </div>
+                </div>
+            </div>
+
+            <!-- ACCOUNT INFO -->
+            <div class="fb-card">
+                <div class="card-header">
+                    <span class="icon">ℹ️</span> Account Info
+                </div>
+                <div class="card-body" style="font-size: 13px; color: var(--fb-text-secondary);">
+                    <div class="intro-item">
+                        <span class="intro-icon">📅</span>
+                        <span>Member Since: <strong>14 Dec 2001</strong></span>
+                    </div>
+                    <div class="intro-item">
+                        <span class="intro-icon">🔄</span>
+                        <span>Last Update: <strong>March 2026</strong></span>
+                    </div>
+                    <div class="intro-item">
+                        <span class="intro-icon">📧</span>
+                        <span>Screenname: <strong>hv4626</strong></span>
+                    </div>
+                    <div class="intro-item">
+                        <span class="intro-icon">🟢</span>
+                        <span>Status: <strong>Employed</strong> — currently online from Seoul, KR</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ====== RIGHT COLUMN ====== -->
+        <section>
+
+            <!-- EXPERIENCE -->
+            <div class="fb-card" id="experience">
+                <div class="card-header">
+                    <span class="icon">💼</span> Work Experience
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div class="timeline-avatar">🔬</div>
+                        <div class="timeline-meta">
+                            <div class="timeline-title">Product Application Engineer — KLA Corporation</div>
+                            <div class="timeline-subtitle">SWIFT Division · South Korea & Singapore</div>
+                            <div class="timeline-date">Jul 2025 – Present</div>
+                        </div>
+                    </div>
+                    <div class="timeline-body">
+                        <ul>
+                            <li>Working on advanced-packaging inspection and metrology systems for leading semiconductor fabs</li>
+                            <li>Bridging product capabilities with customer requirements in the semiconductor ecosystem</li>
+                        </ul>
+                        <div style="margin-top: 8px;">
+                            <span class="tag tag-orange">Semiconductor</span>
+                            <span class="tag tag-orange">Metrology</span>
+                            <span class="tag tag-orange">Advanced Packaging</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div class="timeline-avatar">📱</div>
+                        <div class="timeline-meta">
+                            <div class="timeline-title">Strategy Consulting Intern — Jetpac (Circles.Life)</div>
+                            <div class="timeline-subtitle">Singapore</div>
+                            <div class="timeline-date">Jul 2024 – Dec 2024</div>
+                        </div>
+                    </div>
+                    <div class="timeline-body">
+                        <ul>
+                            <li>Conducted market research to identify gaps & opportunities in the sales process of global & local travel operators</li>
+                            <li>Led 20+ stakeholder interviews to align UX & product offerings with key customers' eSIM needs</li>
+                            <li>Developed Product Management Documents detailing cross-functional requirements for new product offerings</li>
+                            <li>Analyzed viability & profitability of product offerings across India, US, Europe, and the Middle East</li>
+                        </ul>
+                        <div style="margin-top: 8px;">
+                            <span class="tag tag-purple">Product Management</span>
+                            <span class="tag tag-purple">Market Research</span>
+                            <span class="tag tag-purple">eSIM</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div class="timeline-avatar">🤖</div>
+                        <div class="timeline-meta">
+                            <div class="timeline-title">Founders' Office Intern — Sanctity AI</div>
+                            <div class="timeline-subtitle">Amsterdam</div>
+                            <div class="timeline-date">May 2024 – Jul 2024</div>
+                        </div>
+                    </div>
+                    <div class="timeline-body">
+                        <ul>
+                            <li>Awarded a Letter of Recommendation for exceptional contribution in developing the foundational algorithm</li>
+                            <li>Built an automated survey creation & analysis system using OpenAI GPT models & Excel</li>
+                            <li>Designed an ML pipeline with TF-IDF, Random Forest & OpenAI embeddings to classify problem statements</li>
+                        </ul>
+                        <div style="margin-top: 8px;">
+                            <span class="tag tag-blue">OpenAI</span>
+                            <span class="tag tag-blue">ML Pipeline</span>
+                            <span class="tag tag-blue">NLP</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div class="timeline-avatar">🧠</div>
+                        <div class="timeline-meta">
+                            <div class="timeline-title">Research Engineer Intern — Hushh.ai</div>
+                            <div class="timeline-subtitle">Kirkland, US</div>
+                            <div class="timeline-date">May 2023 – Jul 2023</div>
+                        </div>
+                    </div>
+                    <div class="timeline-body">
+                        <ul>
+                            <li>Developed front-end for Android & iOS apps using TensorFlow Lite & CoreML</li>
+                            <li>Led development of in-house personal knowledge models, improving LLM capabilities</li>
+                            <li>Designed and presented cutting-edge LLM pipelines for Hushh Labs & Research</li>
+                        </ul>
+                        <div style="margin-top: 8px;">
+                            <span class="tag tag-blue">LLMs</span>
+                            <span class="tag tag-blue">TensorFlow Lite</span>
+                            <span class="tag tag-blue">CoreML</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROJECTS -->
+            <div class="fb-card" id="projects">
+                <div class="card-header">
+                    <span class="icon">🚀</span> Featured Projects
+                </div>
+                <div class="card-body">
+                    <div class="project-grid">
+                        <div class="project-card">
+                            <div class="project-name">User Association in mmWave Networks</div>
+                            <div class="project-context">M.Tech Thesis · Prof. Gaurav Kasbekar</div>
+                            <div class="project-desc">Developed user-association strategies using Restless Multi-Arm Bandits & Whittle index policy with Python simulations to enhance mmWave network performance.</div>
+                        </div>
+                        <div class="project-card">
+                            <div class="project-name">Quantum Diffusion Modeling</div>
+                            <div class="project-context">CS726: Advanced ML · Prof. Sunita Sarawagi</div>
+                            <div class="project-desc">Optimized quantum diffusion models for NISQ computing, boosting quantum simulations by 30%.</div>
+                        </div>
+                        <div class="project-card">
+                            <div class="project-name">Spiking Neural Networks</div>
+                            <div class="project-context">Supervised Research · Prof. Debanjan Bhaumik</div>
+                            <div class="project-desc">Designed a hybrid SNN-FCNN in PyTorch, achieving +25% accuracy and -30% training time.</div>
+                        </div>
+                        <div class="project-card">
+                            <div class="project-name">Automatic Speech Recognition</div>
+                            <div class="project-context">EE679: Speech Processing · Prof. Preeti Rao</div>
+                            <div class="project-desc">Built an ASR system using GMM-HMM, achieving 82% test accuracy on Google Speech Commands.</div>
+                        </div>
+                    </div>
+                </div>
+                <button class="show-more-btn" onclick="toggleProjects()">See All Projects ▾</button>
+                <div class="hidden-content" id="more-projects">
+                    <div class="card-body" style="padding-top: 0;">
+                        <div class="project-grid">
+                            <div class="project-card">
+                                <div class="project-name">SuperGlue: Graph Neural Network</div>
+                                <div class="project-context">EE769: Intro to ML · Prof. Amit Sethi</div>
+                                <div class="project-desc">Implemented a GNN-based feature matching model enhancing image correspondence via optimal matching layer.</div>
+                            </div>
+                            <div class="project-card">
+                                <div class="project-name">Video Denoising & Compression</div>
+                                <div class="project-context">CS724 · Prof. Ajit Rajwade</div>
+                                <div class="project-desc">Achieved PSNR 23.63 and &lt;4.5% error using LRMC and Hitomi algorithms.</div>
+                            </div>
+                            <div class="project-card">
+                                <div class="project-name">RL in Billiards & Football</div>
+                                <div class="project-context">Self Project</div>
+                                <div class="project-desc">Developed a billiards bot using MCTS and optimized football offense with MDP strategies.</div>
+                            </div>
+                            <div class="project-card">
+                                <div class="project-name">Deep Learning: Image Segmentation</div>
+                                <div class="project-context">EE610 · Prof. Amit Sethi</div>
+                                <div class="project-desc">Implemented UNet for segmentation (Dice loss: 0.147) and used Watershed & Wavelet Transforms.</div>
+                            </div>
+                            <div class="project-card">
+                                <div class="project-name">Forecasting-Based Energy Pricing</div>
+                                <div class="project-context">EE722 · Prof. Anupama Kowli</div>
+                                <div class="project-desc">Predictive models for energy pricing, achieving RMSPE of 16.19% – 22.45%.</div>
+                            </div>
+                            <div class="project-card">
+                                <div class="project-name">Implied Volatility in Options Trading</div>
+                                <div class="project-context">IE612 · Prof. Surya M. R. Kurada</div>
+                                <div class="project-desc">Applied Black-Scholes model, achieving RMSE of 11.6 (Call) and 7.1 (Put).</div>
+                            </div>
+                            <div class="project-card">
+                                <div class="project-name">Stock Market Predictions</div>
+                                <div class="project-context">Summer of Code, WnCC, IIT Bombay</div>
+                                <div class="project-desc">ML/DL models (LSTM, ARIMA) to predict Google stock prices — 98.54% accuracy with ARIMA.</div>
+                            </div>
+                            <div class="project-card">
+                                <div class="project-name">Financial Data Analysis & Modeling</div>
+                                <div class="project-context">Self Project</div>
+                                <div class="project-desc">Pre-processed financial data, applied PCA & HMM, achieving 82.5% predictive accuracy for credit spreads.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LEADERSHIP -->
+            <div class="fb-card" id="leadership">
+                <div class="card-header">
+                    <span class="icon">🏛</span> Leadership & Impact
+                </div>
+                <div class="card-body">
+                    <div class="por-highlight">
+                        <div class="por-title">Department General Secretary, Electrical Engineering</div>
+                        <div class="por-org">IIT Bombay · Apr 2023 – May 2024</div>
+                        <p style="font-size: 13px; line-height: 1.5; margin-bottom: 10px;">Highest elected representative of the EE department — served 2000+ students, 40+ professors, and alumni. Sole student representative in the DUGC (department's apex legislative body).</p>
+                        <div class="por-stats">
+                            <span class="por-stat">👥 2000+ students represented</span>
+                            <span class="por-stat">💰 ₹3 Cr alumni donations secured</span>
+                            <span class="por-stat">🎪 3x increase in fest footfall</span>
+                            <span class="por-stat">📦 3.5x merch sales YoY</span>
+                            <span class="por-stat">🌍 G20 Youth Summit workshop</span>
+                        </div>
+                        <div style="margin-top: 12px;">
+                            <span class="award-badge">🏅 Institute Organizational Commendation</span>
+                            <span class="award-badge">🎖 Roll of Honor — EE Department</span>
+                        </div>
+                    </div>
+                    <div class="por-highlight">
+                        <div class="por-title">Student Mentor</div>
+                        <div class="por-org">Student Mentorship Program, IIT Bombay · Jul 2024 – May 2025</div>
+                        <p style="font-size: 13px; line-height: 1.5; margin-bottom: 10px;">Selected as 1 of 150 institute mentors from 430+ applicants. Mentored 12 first-year students and 6 sophomores.</p>
+                        <div class="por-stats">
+                            <span class="por-stat">🎯 Top 35% selection rate</span>
+                            <span class="por-stat">👨‍🏫 18 mentees total</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- THE WALL -->
+            <div class="fb-card" id="wall">
+                <div class="card-header">
+                    <span class="icon">📝</span> The Wall
+                </div>
+
+                <div class="wall-post">
+                    <div class="wall-author">
+                        <div class="wall-avatar">T</div>
+                        <div>
+                            <div class="wall-name">Tanmay</div>
+                            <div class="wall-time">Feb 20, 2025 · 2:30 PM</div>
+                        </div>
+                    </div>
+                    <div class="wall-text">Hv, kaha hai tu? 😂</div>
+                    <div class="wall-actions">
+                        <span class="wall-action">👍 Like</span>
+                        <span class="wall-action">💬 Comment</span>
+                    </div>
+                </div>
+
+                <div class="wall-post">
+                    <div class="wall-author">
+                        <div class="wall-avatar" style="background: #e7f3ff;">H</div>
+                        <div>
+                            <div class="wall-name">Harshvardhan</div>
+                            <div class="wall-time">Feb 20, 2025 · 2:31 PM</div>
+                        </div>
+                    </div>
+                    <div class="wall-text">Lab me hu bhai, kaam kr rha 💻</div>
+                    <div class="wall-actions">
+                        <span class="wall-action">👍 Like</span>
+                        <span class="wall-action">💬 Comment</span>
+                    </div>
+                </div>
+
+                <div class="wall-post">
+                    <div class="wall-author">
+                        <div class="wall-avatar" style="background: #e6f6e6;">K</div>
+                        <div>
+                            <div class="wall-name">KLA SWIFT</div>
+                            <div class="wall-time">Jul 1, 2025</div>
+                        </div>
+                    </div>
+                    <div class="wall-text">🎉 Harshvardhan has joined KLA Corporation as a Product Application Engineer!</div>
+                    <div class="wall-actions">
+                        <span class="wall-action">👍 12 Likes</span>
+                        <span class="wall-action">💬 3 Comments</span>
+                    </div>
+                </div>
+
+                <div class="wall-post">
+                    <div class="wall-author">
+                        <div class="wall-avatar" style="background: #fff3e0;">🎓</div>
+                        <div>
+                            <div class="wall-name">IIT Bombay</div>
+                            <div class="wall-time">May 2025</div>
+                        </div>
+                    </div>
+                    <div class="wall-text">🎊 Harshvardhan graduated with a Dual Degree in Electrical Engineering from IIT Bombay! Congratulations!</div>
+                    <div class="wall-actions">
+                        <span class="wall-action">👍 48 Likes</span>
+                        <span class="wall-action">💬 15 Comments</span>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- ====== FOOTER ====== -->
+    <footer class="fb-footer">
+        <p>
+            <a href="https://www.linkedin.com/in/hv4626/">LinkedIn</a>
+            <a href="https://github.com/hv4626/">GitHub</a>
+            <a href="https://www.instagram.com/hrsh.vrdn/">Instagram</a>
+            <a href="mailto:hv4626@gmail.com">Email</a>
+        </p>
+        <p style="margin-top: 8px;">Harshvardhan R · Made with nostalgia · Updated March 2026</p>
+    </footer>
+
+    <!-- ====== LIGHTBOX ====== -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="Full-size photo">
+    </div>
+
+    <!-- ====== SCRIPTS ====== -->
+    <script>
+        // Lightbox
+        function openLightbox(img) {
+            document.getElementById('lightbox-img').src = img.src;
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        // Toggle sections
+        function toggleFriends() {
+            const el = document.getElementById('more-friends');
+            const btn = el.previousElementSibling;
+            el.classList.toggle('visible');
+            btn.textContent = el.classList.contains('visible') ? 'Show Less ▴' : 'See All Friends ▾';
+        }
+
+        function toggleProjects() {
+            const el = document.getElementById('more-projects');
+            const btn = el.previousElementSibling;
+            el.classList.toggle('visible');
+            btn.textContent = el.classList.contains('visible') ? 'Show Less ▴' : 'See All Projects ▾';
+        }
+
+        // Smooth scroll for nav
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+                // Update active tab
+                document.querySelectorAll('.profile-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Intersection observer for active tab highlighting
+        const sections = document.querySelectorAll('[id]');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.id;
+                    document.querySelectorAll('.profile-tab').forEach(tab => {
+                        tab.classList.toggle('active', tab.getAttribute('href') === '#' + id);
+                    });
+                }
+            });
+        }, { threshold: 0.3 });
+
+        sections.forEach(section => observer.observe(section));
+    </script>
+
+</body>
+</html>
